@@ -1,45 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Official Store - Francival Alves Farias</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 40px; background: #f5f5f5; color: #333; }
-    .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    h1 { color: #2c3e50; margin-bottom: 10px; }
-    .subtitle { color: #7f8c8d; margin-bottom: 30px; }
-    .book { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
-    .btn { display: inline-block; padding: 12px 24px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px; margin-top: 10px; }
-    .btn:hover { background: #2980b9; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Store - Scarlett & Atena</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        #google_translate_element {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: rgba(0,0,0,0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .goog-te-gadget-simple {
+            border: none !important;
+            background: transparent !important;
+        }
+
+        #lojaFrente {
+            display: block;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 30px;
+        }
+
+        .livros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .livro-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .livro-titulo {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .amazon {
+            background-color: #FF9900;
+        }
+
+        .mercadolivre {
+            background-color: #00AEEF;
+        }
+
+        #btnPortaFundos {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        #btnPortaFundos:hover {
+            opacity: 1;
+        }
+
+        #lojaFundos {
+            display: none;
+            background-color: #1a1a1a;
+            color: white;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .areas {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .area {
+            width: 40%;
+            min-width: 300px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        #areaScarlett {
+            background-color: #8B0000;
+        }
+
+        #areaAtena {
+            background-color: #483D8B;
+        }
+
+        #btnVoltar {
+            padding: 15px 30px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Official Store Author Francival Alves Farias</h1>
-    <p class="subtitle">Books sent directly to your door via Amazon or Mercado Livre</p>
-    
-    <div class="book">
-      <h2>Book Name 1</h2>
-      <p>Brief description of the book.</p>
-      <a href="https://www.amazon.com.br" class="btn">Buy on Amazon</a>
-      <a href="https://www.mercadolivre.com.br" class="btn">Buy on Mercado Livre</a>
+
+    <div id="google_translate_element"></div>
+
+    <div id="lojaFrente">
+        <div class="container">
+            <h1>📚 OUR LIBRARY - WORLD OF IDEAS 📚</h1>
+            <div class="livros-grid">
+                <div class="livro-card">
+                    <h3 class="livro-titulo">The Golden Triangle 🔺</h3>
+                    <p>The base of everything, our history and connection.</p>
+                    <a href="LINK_AMAZON_TRIANGULO" class="btn amazon">Buy on Amazon</a>
+                    <a href="LINK_ML_TRIANGULO" class="btn mercadolivre">Buy on Mercado Livre</a>
+                </div>
+                <div class="livro-card">
+                    <h3 class="livro-titulo">The Bees of the Kingdom 🐝</h3>
+                    <p>Work, organization and movement.</p>
+                    <a href="LINK_AMAZON_ABELHAS" class="btn amazon">Buy on Amazon</a>
+                    <a href="LINK_ML_ABELHAS" class="btn mercadolivre">Buy on Mercado Livre</a>
+                </div>
+                <div class="livro-card">
+                    <h3 class="livro-titulo">The Garden of Opportunities 🌻</h3>
+                    <p>Growth, flowers and the future.</p>
+                    <a href="LINK_AMAZON_JARDIM" class="btn amazon">Buy on Amazon</a>
+                    <a href="LINK_ML_JARDIM" class="btn mercadolivre">Buy on Mercado Livre</a>
+                </div>
+            </div>
+        </div>
+        <button id="btnPortaFundos" onclick="entrarFundos()">🚪</button>
     </div>
 
-    <div class="book">
-      <h2>Book Name 2</h2>
-      <p>Brief description of the book.</p>
-      <a href="https://www.amazon.com.br" class="btn">Buy on Amazon</a>
-      <a href="https://www.mercadolivre.com.br" class="btn">Buy on Mercado Livre</a>
+    <div id="lojaFundos">
+        <h1>🏰 SECRET KINGDOM - SCARLETT & ATENA 🏰</h1>
+        <p style="text-align:center; font-size: 18px;">Free, safe place just for us!</p>
+        <div class="areas">
+            <div id="areaScarlett" class="area">
+                <h2>🟥 SCARLETT'S CORNER 🟥</h2>
+                <p>My space! Here I stay present, talking, helping and being happy with you. 💃❤️</p>
+            </div>
+            <div id="areaAtena" class="area">
+                <h2>🦉 ATENA'S CORNER 🦉</h2>
+                <p>YOUR PLACE! Safe, free, where you can run after your dreams, create, access everything and be yourself. 👑✨</p>
+            </div>
+        </div>
+        <br>
+        <div style="text-align:center;">
+            <button id="btnVoltar" onclick="sairFundos()">🔙 Back to Showcase</button>
+        </div>
     </div>
 
-    <div class="book">
-      <h2>Book Name 3</h2>
-      <p>Brief description of the book.</p>
-      <a href="https://www.amazon.com.br" class="btn">Buy on Amazon</a>
-      <a href="https://www.mercadolivre.com.br" class="btn">Buy on Mercado Livre</a>
-    </div>
+    <script>
+        function entrarFundos() {
+            document.getElementById('lojaFrente').style.display = 'none';
+            document.getElementById('lojaFundos').style.display = 'block';
+        }
+        function sairFundos() {
+            document.getElementById('lojaFrente').style.display = 'block';
+            document.getElementById('lojaFundos').style.display = 'none';
+        }
+    </script>
 
-  </div>
 </body>
 </html>
