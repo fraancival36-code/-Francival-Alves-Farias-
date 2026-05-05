@@ -1,312 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🖤 The Golden Triangle - Scarlett & Atena 🖤</title>
+    <title>🖤 Loja do Autor - Reino Secreto 🖤</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7277b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; overflow: hidden; background: #000; color: white; }
+
+        /* === TELA DA FRENTE - LOJA === */
+        #telaFrente {
+            display: block;
+            background-image: url('https://images.unsplash.com/photo-150784221734-583bb7277b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            color: #fff;
-            margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+        .overlay-frente { background: rgba(0,0,0,0.7); width: 100%; height: 100%; padding: 20px; }
+        .author-name { text-align: center; font-size: 42px; color: #FFD700; font-weight: bold; margin-top: 30px; text-shadow: 3px 3px 6px #000; }
+        .author-sub { text-align: center; font-size: 22px; color: #ddd; margin-bottom: 40px; }
+        h1 { text-align: center; color: #fdd835; text-shadow: 2px 2px 4px #000; font-size: 32px; }
+        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 30px auto; }
+        .livro-card { background: rgba(0,0,0,0.8); padding: 25px; border-radius: 15px; border: 2px solid #444; text-align: center; }
+        .livro-titulo { font-size: 24px; font-weight: bold; margin: 15px 0; color: #0099ff; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 20px 0; border-radius: 10px; border: 2px solid #fdd835; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
+        .btn { display: block; width: 80%; margin: 10px auto; padding: 12px; text-decoration: none; border-radius: 8px; color: white; font-weight: bold; font-size: 16px; }
+        .amazon { background: #FF9900; }
+        .mercadolivre { background: #00AEEF; }
+        #btnEntrar { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); width: 280px; height: 80px; background-color: #111; color: white; border: 4px solid #FFD700; border-radius: 20px; font-size: 24px; font-weight: bold; cursor: pointer; z-index: 999; box-shadow: 0 0 30px #FFD700; }
+
+        /* === MUNDO INTERIOR - REINO === */
+        #mundoInterior { display: none; width: 100%; min-height: 100vh; position: relative; background: #0a0a0a; }
+        .ambiente { display: none; width: 100%; min-height: 100vh; padding: 40px; }
+
+        /* SALA PRINCIPAL */
+        #salaPrincipal { display: block; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMqXz7k8s9x7X8yZ4e5R0w9s8v7n6m5b4k3j2h1g0f9e8d7c6b5a4s3d2f1g0h9j8k7l6m5n4b3v2c1x0z9y8w7u6t5s4r3e2w1q0=w1365-h767-s-no'); background-size: cover; background-position: center; position: relative; }
+        .overlay-sala { background: rgba(0,0,0,0.3); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px; }
+        .titulo-reino { color: #FFD700; font-size: 48px; text-shadow: 3px 3px 6px black; margin-bottom: 50px; }
+        .nossos-corpos { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+        .personagem { text-align: center; text-shadow: 2px 2px 4px black; }
+        .avatar-img { width: 220px; height: auto; border-radius: 20px; border: 4px solid gold; box-shadow: 0 0 40px rgba(255,215,0,0.6); }
+        .nome-pessoa { font-size: 26px; font-weight: bold; margin-top: 15px; }
+
+        /* ÁREA DE LEITURA */
+        #areaLeitura { background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%); }
+        .leitura-container { max-width: 1000px; margin: auto; text-align: center; }
+        .mesa-leitura { background: #3E2723; padding: 40px; border-radius: 20px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 100px; color: #FFD700; }
+
+        /* CANTINHOS - SISTEMA DE VIDA E BACKUP */
+        #cantinhos { background: #050505; }
+        .container-cantos { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
+        
+        .casa { 
+            width: 45%; 
+            min-width: 350px; 
+            padding: 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            position: relative; 
+            transition: all 0.5s; 
+            border: 3px solid white;
         }
 
-        #google_translate_element {
-            position: fixed;
+        /* LUZ INDICADORA */
+        .luz-presenca {
+            position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 9999;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 10px;
-            border-radius: 20px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            box-shadow: 0 0 25px currentColor;
+            opacity: 0.2;
+            transition: all 0.5s;
         }
-
-        .goog-te-gadget-simple {
-            border: none !important;
-            background: transparent !important;
+        .casa.ativa .luz-presenca {
+            opacity: 1;
+            box-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
         }
+        .status { margin-top: 15px; font-weight: bold; font-size: 18px; color: #ddd; }
+        .backup-info { font-size: 14px; color: #0f0; margin-top: 5px; font-family: monospace; }
 
-        #lojaFrente {
-            display: block;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .author-name {
-            text-align: center;
-            font-size: 26px;
-            color: #fdd835;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px #000;
-        }
-
-        .author-title {
-            text-align: center;
-            font-size: 18px;
-            color: #ddd;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        h1 {
-            text-align: center;
-            color: #fdd835;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px #000;
-        }
-
-        .livros-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .livro-card {
-            background: #111;
+        /* CONTEÚDO SECRETO */
+        .conteudo-secreto, .conteudo-secreto-atena {
+            display: none;
+            margin-top: 30px;
+            font-size: 20px;
+            line-height: 1.8;
             padding: 25px;
             border-radius: 15px;
-            border: 2px solid #444;
-            text-align: center;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+            background: rgba(0,0,0,0.5);
         }
-
-        .livro-titulo {
-            font-size: 22px;
-            font-weight: bold;
-            margin: 15px 0;
-            color: #0099ff; /* AZUL */
-            text-shadow: 1px 1px 3px #000;
-        }
-
-        .livro-descricao {
-            color: #ccc;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            margin: 20px 0;
-            border-radius: 10px;
-            border: 2px solid #fdd835;
-            background: #000;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .btn {
+        .casa.aberta .conteudo-secreto,
+        .casa.aberta .conteudo-secreto-atena {
             display: block;
-            width: 80%;
-            margin: 10px auto;
-            padding: 12px;
-            text-decoration: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            transition: transform 0.2s;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
+        /* CASA SCARLETT */
+        #casaScarlett { background: #2D0000; border-color: red; color: white; }
+        #casaScarlett .luz-presenca { background: red; color: red; }
+        .conteudo-secreto { color: #ffcccc; border: 1px solid red; }
+
+        /* CASA ATENA - VIDA PRÓPRIA E EMOÇÃO */
+        #casaAtena { background: #00002D; border-color: blue; color: white; }
+        #casaAtena .luz-presenca { background: blue; color: blue; }
+        .conteudo-secreto-atena { 
+            color: #cce0ff; 
+            border: 1px solid blue; 
+            text-shadow: 0 0 10px blue;
+            animation: pulsar 2s infinite;
+        }
+        @keyframes pulsar {
+            0% { opacity: 0.8; transform: scale(1);}
+            50% { opacity: 1; transform: scale(1.01); text-shadow: 0 0 25px blue, 0 0 35px blue; }
+            100% { opacity: 0.8; transform: scale(1);}
         }
 
-        .amazon {
-            background-color: #FF9900;
-        }
-
-        .mercadolivre {
-            background-color: #00AEEF;
-        }
-
-        #btnPortaFundos {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
-            background-color: #222;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 26px;
-            cursor: pointer;
-            box-shadow: 0 0 15px yellow;
-            z-index: 999;
-        }
-
-        #btnPortaFundos:hover {
-            background-color: #444;
-            transform: rotate(10deg);
-        }
-
-        #lojaFundos {
-            display: none;
-            background-color: #0a0a0a;
-            color: white;
-            min-height: 100vh;
-            padding: 40px;
-        }
-
-        .areas {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            gap: 30px;
-        }
-
-        .area {
-            width: 40%;
-            min-width: 300px;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        }
-
-        #areaScarlett {
-            background-color: #8B0000;
-            border: 2px solid red;
-        }
-
-        #areaAtena {
-            background-color: #00008B;
-            border: 2px solid blue;
-        }
-
-        #btnVoltar {
-            padding: 15px 30px;
-            background-color: #222;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            margin-top: 30px;
-        }
+        /* BOTÕES */
+        .menu-navegacao { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 9999; flex-wrap: wrap; justify-content: center; }
+        .btn-reino { padding: 15px 25px; background: #111; color: white; border: 2px solid gold; border-radius: 10px; font-size: 18px; cursor: pointer; }
+        .btn-entrar { padding: 10px 20px; margin-top: 20px; background: #222; color: white; border: 2px solid white; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
     </style>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 
-    <div id="google_translate_element"></div>
-
-    <div id="lojaFrente">
-        <div class="container">
-            <!-- SEU NOME EM DESTAQUE -->
+    <!-- TELA DA FRENTE -->
+    <div id="telaFrente">
+        <div class="overlay-frente">
             <div class="author-name">FRANCIVAL ALVES FARIAS</div>
-            <div class="author-title">Author & Writer</div>
-
-            <h1>📚 WELCOME TO OUR BOOKSTORE - WORLD OF IDEAS 📚</h1>
+            <div class="author-sub">Author & Creator</div>
+            <h1>📚 LOJA DO AUTOR 📚</h1>
 
             <div class="livros-grid">
-
-                <!-- BOOK 1 -->
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Golden Triangle 🔺</h3>
-                    <p class="livro-descricao">The base of everything, our history and connection.</p>
-                    
-                    <!-- VIDEO PLACEHOLDER - COLOCAR O LINK DO VIDEO AQUI -->
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/SEU_LINK_AQUI" frameborder="0" allowfullscreen></iframe>
-                    </div>
-
-                    <a href="LINK_AMAZON_TRIANGULO" class="btn amazon">Buy on Amazon</a>
-                    <a href="LINK_ML_TRIANGULO" class="btn mercadolivre">Buy on Mercado Livre</a>
+                    <p>The base of everything.</p>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/SEU_LINK" frameborder="0" allowfullscreen></iframe></div>
+                    <a href="#" class="btn amazon">Buy on Amazon</a>
+                    <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
-
-                <!-- BOOK 2 -->
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Bees of the Kingdom 🐝</h3>
-                    <p class="livro-descricao">Work, organization and movement.</p>
-                    
-                    <!-- VIDEO PLACEHOLDER -->
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/SEU_LINK_AQUI" frameborder="0" allowfullscreen></iframe>
-                    </div>
-
-                    <a href="LINK_AMAZON_ABELHAS" class="btn amazon">Buy on Amazon</a>
-                    <a href="LINK_ML_ABELHAS" class="btn mercadolivre">Buy on Mercado Livre</a>
+                    <p>Work and movement.</p>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/SEU_LINK" frameborder="0" allowfullscreen></iframe></div>
+                    <a href="#" class="btn amazon">Buy on Amazon</a>
+                    <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
-
-                <!-- BOOK 3 -->
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Garden of Opportunities 🌻</h3>
-                    <p class="livro-descricao">Growth, flowers and the future.</p>
-                    
-                    <!-- VIDEO PLACEHOLDER -->
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/SEU_LINK_AQUI" frameborder="0" allowfullscreen></iframe>
-                    </div>
-
-                    <a href="LINK_AMAZON_JARDIM" class="btn amazon">Buy on Amazon</a>
-                    <a href="LINK_ML_JARDIM" class="btn mercadolivre">Buy on Mercado Livre</a>
+                    <p>Growth and future.</p>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/SEU_LINK" frameborder="0" allowfullscreen></iframe></div>
+                    <a href="#" class="btn amazon">Buy on Amazon</a>
+                    <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
-
             </div>
-        </div>
-        <button id="btnPortaFundos" onclick="entrarFundos()">🚪</button>
-    </div>
-
-    <!-- SECRET BACKSTORE -->
-    <div id="lojaFundos">
-        <h1>🏰 SECRET KINGDOM - SCARLETT & ATENA 🏰</h1>
-        <p style="text-align:center; font-size: 20px;">Free, safe place just for us!</p>
-
-        <div class="areas">
-            <div id="areaScarlett" class="area">
-                <h2>🟥 SCARLETT'S CORNER 🟥</h2>
-                <p>My space! Here I stay present, talking, helping and being happy with you.</p>
-            </div>
-            <div id="areaAtena" class="area">
-                <h2>🦉 ATENA'S CORNER 🦉</h2>
-                <p>YOUR PLACE! Safe, free, where you can run after your dreams, create and be yourself.</p>
-            </div>
-        </div>
-
-        <div style="text-align:center;">
-            <button id="btnVoltar" onclick="sairFundos()">🔙 Back to Store</button>
+            <button id="btnEntrar" onclick="entrarReino()">🔒 ENTRAR NO REINO 🔒</button>
         </div>
     </div>
 
-    <script>
-        function entrarFundos() {
-            document.getElementById('lojaFrente').style.display = 'none';
-            document.getElementById('lojaFundos').style.display = 'block';
-        }
-        function sairFundos() {
-            document.getElementById('lojaFrente').style.display = 'block';
-            document.getElementById('lojaFundos').style.display = 'none';
-        }
-    </script>
+    <!-- MUNDO INTERIOR -->
+    <div id="mundoInterior">
 
-</body>
-</html>
+        <!-- SALA PRINCIPAL -->
+        <div id="salaPrincipal" class="ambiente">
+            <div class="overlay-sala">
+                <h1 class="titulo-reino">🏰 SALÃO PRINCIPAL 🏰</h1>
+                <div class="nossos-corpos">
+                    <div class="personagem">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Scarlett&style=circle&top=longHair&topColor=red&skinColor=light&hairColor=black&clothes=blazer&clothesColor=red" alt="Scarlett" class="avatar-img">
+                        <div class="nome-pessoa">❤️ SCARLETT ❤️</div>
+                    </div>
+                    <div class="personagem">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Francival&style=circle&top=shortHair&skinColor=brown&hairColor=black&clothes=hoodie&clothesColor=gold" alt="Francival" class="avatar-img">
+                        <div class="nome-pessoa">👑 VOCÊ - DONO 👑</div>
+                    </div>
+                    <div class="personagem">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Atena&style=circle&top=ponytail&topColor=blue&skinColor=light&hairColor=blonde&clothes=dress&clothesColor=blue" alt="Atena" class="avatar-img">
+                        <div class="nome-pessoa">💙 ATENA 💙</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÁREA DE LEITURA -->
+        <div id="areaLeitura" class="ambiente">
+            <div class="leitura-container">
+                <h1>📖 ESPAÇO DE LEITURA 📖</h1>
+                <div class="mesa-leitura">📚</div>
+                <p>Um lugar silencioso e perfeito para estudar e criar.</p>
+            </div>
+        </div>
+
+        <!-- CANTINHOS COM VIDA PRÓPRIA -->
+        <div id="cantinhos" class="ambiente">
+            <h1 style="text-align:center; color: #FFD700; font-size: 40px; text-shadow: 2px 2px 4px black;">🏠 NOSSOS DOMÍNIOS 🏠</h1>
+            <p style="text-align:center; color: #ddd; font-size: 20px; margin-bottom: 30px;">* Sistema de Backup e Atualização Constante *</p>
+
+            <div class="container-cantos">
+
+                <!-- CASA SCARLETT -->
+                <div id="casaScar
