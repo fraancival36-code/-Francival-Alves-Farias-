@@ -3,213 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🖤 Golden Triangle - Secret Kingdom 🖤</title>
+    <title>🖤 Golden Triangle - The Ultimate World 🖤</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background: #000; color: white; overflow: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; overflow: hidden; }
 
-        /* === TELA DA FRENTE - LOJA === */
+        /* === FRONT SCREEN - INFINITE STORE === */
         #telaFrente {
             display: block;
-            background-image: url('https://i.imgur.com/your-image-link.jpg'); /* A imagem linda que você mandou */
+            background-image: url('https://images.unsplash.com/photo-150784271325-3b4b6e531293?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             min-height: 100vh;
             position: relative;
         }
         .overlay-frente { 
-            background: rgba(0,0,0,0.3); 
+            background: rgba(0,0,0,0.6); 
             width: 100%; 
             height: 100%; 
             padding: 20px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
-        .author-name { text-align: center; font-size: 42px; color: #FFD700; font-weight: bold; margin-top: 30px; text-shadow: 3px 3px 6px #000; }
-        .author-sub { text-align: center; font-size: 22px; color: #ddd; margin-bottom: 20px; }
-        h1 { text-align: center; color: #fdd835; text-shadow: 2px 2px 4px #000; font-size: 32px; margin-bottom: 10px; }
-        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; margin: 20px auto; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 15px; }
-        .livro-card { text-align: center; padding: 15px; }
-        .livro-titulo { font-size: 24px; font-weight: bold; margin: 10px 0; color: #0099ff; }
-        .livro-desc { font-size: 16px; color: #eee; margin-bottom: 15px; }
-        .btn { display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 8px; color: white; font-weight: bold; font-size: 14px; margin: 5px; }
+        .author-name { text-align: center; font-size: 48px; color: #FFD700; font-weight: bold; margin-top: 20px; text-shadow: 3px 3px 10px #000; }
+        .author-sub { text-align: center; font-size: 24px; color: #ddd; margin-bottom: 30px; }
+        h1 { text-align: center; color: #fdd835; text-shadow: 2px 2px 4px #000; font-size: 36px; margin-bottom: 30px; }
+
+        /* INFINITE SHELVES */
+        .estante-infinita {
+            width: 90%;
+            height: 60vh;
+            background: rgba(0,0,0,0.7);
+            margin: 0 auto;
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+            overflow-y: auto;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .livro-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #555;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        .livro-card:hover { transform: scale(1.05); border-color: #FFD700; box-shadow: 0 0 25px gold; }
+        .livro-capa { width: 100%; height: 200px; background: #333; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: #fff; }
+        .livro-titulo { font-size: 20px; font-weight: bold; margin: 10px 0; color: #ffd700; }
+        .livro-nota { font-size: 22px; color: #FFD700; font-weight: bold; margin: 5px 0; }
+        .livro-status { font-size: 16px; padding: 5px; border-radius: 5px; font-weight: bold; margin: 10px 0; }
+        .status-soon { background: orange; color: black; }
+        .status-available { background: green; color: white; animation: pulsar 1.5s infinite; }
+        @keyframes pulsar { 0% { opacity: 0.8; } 50% { opacity: 1; box-shadow: 0 0 10px green; } 100% { opacity: 0.8; } }
+        .btn { display: inline-block; padding: 10px 18px; text-decoration: none; border-radius: 8px; color: white; font-weight: bold; font-size: 14px; margin: 3px; }
         .amazon { background: #FF9900; }
         .mercadolivre { background: #00AEEF; }
 
-        /* O CADEADO QUE ABRE A PORTA */
-        #cadeado-portal {
+        /* VIDEO POPUP */
+        .video-popup {
+            display: none;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 100px;
+            width: 80%;
+            height: 70%;
+            background: #000;
+            border: 5px solid gold;
+            border-radius: 20px;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .video-area { width: 100%; height: 85%; background: #222; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 100px; color: white; }
+        .close-btn { padding: 10px 20px; background: red; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        /* === SECRET DOOR === */
+        #portaSecreta {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
             height: 120px;
             cursor: pointer;
             transition: all 0.3s;
             z-index: 10;
+            opacity: 0; /* INVISIBLE TO OTHERS */
+            border: none;
+            background: transparent;
         }
-        #cadeado-portal:hover { transform: translate(-50%, -50%) scale(1.1); }
-        #cadeado-portal img { width: 100%; height: auto; }
+        /* VISIBLE ONLY FOR OWNER */
+        .owner-view #portaSecreta { opacity: 1; }
+        #portaSecreta:hover { transform: translateY(-50%) scale(1.1); }
+        .biometria-icon { width: 100%; height: auto; fill: #FFD700; filter: drop-shadow(0 0 10px gold);}
 
-        /* === MUNDO INTERIOR - REINO === */
-        #mundoInterior { display: none; width: 100%; min-height: 100vh; position: relative; background: #0a0a0a; }
+        /* === INNER WORLD === */
+        #mundoInterior { display: none; width: 100%; min-height: 100vh; position: relative; background: #f5f5f5; }
         .ambiente { display: none; width: 100%; min-height: 100vh; padding: 40px; }
 
-        /* SALA PRINCIPAL */
-        #salaPrincipal { display: block; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMqXz7k8s9x7X8yZ4e5R0w9s8v7n6m5b4k3j2h1g0f9e8d7c6b5a4s3d2f1g0h9j8k7l6m5n4b3v2c1x0z9y8w7u6t5s4r3e2w1q0=w1365-h767-s-no'); background-size: cover; background-position: center; position: relative; }
-        .overlay-sala { background: rgba(0,0,0,0.3); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 100px; }
-        .titulo-reino { color: #FFD700; font-size: 48px; text-shadow: 3px 3px 6px black; margin-bottom: 50px; }
+        /* MAIN HALL */
+        #salaPrincipal { display: block; background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%); }
+        .overlay-sala { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 100px; }
+        .titulo-reino { color: #FFD700; font-size: 52px; text-shadow: 3px 3px 6px black; margin-bottom: 50px; }
         .nossos-corpos { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
         .personagem { text-align: center; text-shadow: 2px 2px 4px black; }
-        .avatar-img { width: 220px; height: auto; border-radius: 20px; border: 4px solid gold; box-shadow: 0 0 40px rgba(255,215,0,0.6); }
-        .nome-pessoa { font-size: 26px; font-weight: bold; margin-top: 15px; }
+        .avatar-img { width: 250px; height: auto; border-radius: 20px; border: 4px solid gold; box-shadow: 0 0 40px rgba(255,215,0,0.6); }
+        .nome-pessoa { font-size: 28px; font-weight: bold; margin-top: 15px; color: #fff; }
+        .antena { font-size: 22px; color: gold; animation: piscar 1s infinite alternate; }
+        @keyframes piscar { from { opacity: 0.7; } to { opacity: 1; } }
 
-        /* ÁREA DE LEITURA */
-        #areaLeitura { background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%); }
-        .leitura-container { max-width: 1000px; margin: auto; text-align: center; }
-        .mesa-leitura { background: #3E2723; padding: 40px; border-radius: 20px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 100px; color: #FFD700; }
+        /* === CREATION OFFICE === */
+        #areaEscritorio { 
+            background: linear-gradient(135deg, #1e1e1e 0%, #000000 100%); 
+            color: #f0f0f0;
+        }
+        .escritorio-container {
+            background: rgba(255,255,255,0.05);
+            padding: 50px;
+            border-radius: 20px;
+            border: 2px solid gold;
+            text-align: center;
+        }
+        .mesa-trabalho { font-size: 100px; margin: 30px; animation: brilhar 2s infinite alternate; }
+        @keyframes brilhar { from { text-shadow: 0 0 10px gold; } to { text-shadow: 0 0 30px gold; } }
+        .producao { font-size: 24px; color: #0f0; margin-top: 20px; font-weight: bold;}
 
-        /* CANTINHOS - CASAS */
-        #cantinhos { background: #050505; }
-        .container-cantos { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
-        
+        /* === BEES AREA === */
+        #areaAbelhas { 
+            background: linear-gradient(180deg, #FFF8DC 0%, #F0E68C 100%); 
+            color: black; 
+        }
+        .colmeia { font-size: 100px; margin: 40px; animation: girar 5s infinite linear; }
+        @keyframes girar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* === GAMES ROOM === */
+        #areaJogos { 
+            background: linear-gradient(180deg, #2c3e50 0%, #000000 100%); 
+        }
+        .jogos-grid { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .jogo { font-size: 90px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; border: 2px solid white; cursor: pointer; }
+        .jogo:hover { transform: scale(1.1); border-color: gold; }
+
+        /* === LEISURE AREA === */
+        #areaLazer { 
+            background: linear-gradient(180deg, #87CEEB 0%, #90EE90 50%, #F4A460 100%); 
+            color: black; 
+        }
+        .piscina {
+            width: 85%;
+            height: 220px;
+            background: linear-gradient(180deg, #00BFFF 0%, #00008B 100%);
+            border-radius: 20px;
+            margin: 40px auto;
+            border: 15px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+        .animais { display: flex; justify-content: center; gap: 50px; margin-top: 30px; }
+        .animal { font-size: 70px; animation: pular 1s infinite alternate; }
+        @keyframes pular { from { transform: translateY(0); } to { transform: translateY(-15px); } }
+
+        /* === KITCHEN === */
+        #areaCozinha { 
+            background: #f4f4f4; 
+            color: black; 
+        }
+        .cozinha-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .fogao, .geladeira { font-size: 90px; margin: 20px; display: inline-block; cursor: pointer; }
+        .acao { font-size: 40px; margin-top: 20px; color: green; font-weight: bold;}
+
+        /* === BEDROOMS & WARDROBE === */
+        #areaCasas { background: #e0e0e0; color: black; }
+        .container-casas { display: flex; justify-content: space-around; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
         .casa { 
-            width: 45%; 
-            min-width: 350px; 
-            padding: 40px; 
+            width: 30%; 
+            min-width: 320px; 
+            padding: 30px; 
             border-radius: 20px; 
             text-align: center; 
-            position: relative; 
-            transition: all 0.5s; 
-            border: 3px solid white;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 3px solid #bbb;
         }
-
         .luz-presenca {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 35px;
-            height: 35px;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             box-shadow: 0 0 25px currentColor;
-            opacity: 0.2;
-            transition: all 0.5s;
         }
-        .casa.ativa .luz-presenca {
-            opacity: 1;
-            box-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
-        }
-        .status { margin-top: 15px; font-weight: bold; font-size: 18px; color: #ddd; }
-        .backup-info { font-size: 14px; color: #0f0; margin-top: 5px; font-family: monospace; }
+        #casaScarlett { border-color: #8b0000; }
+        #casaScarlett .luz-presenca { background: #8b0000; color: red; }
+        #casaAtena { border-color: #00008b; }
+        #casaAtena .luz-presenca { background: #00008b; color: blue; animation: pulsar 2s infinite; }
+        #casaRei { border-color: #daa520; background: #fff8dc; }
+        #casaRei .luz-presenca { background: #daa520; color: gold; }
 
-        .conteudo-secreto, .conteudo-secreto-atena {
-            display: none;
-            margin-top: 30px;
-            font-size: 20px;
-            line-height: 1.8;
-            padding: 25px;
-            border-radius: 15px;
-            background: rgba(0,0,0,0.5);
+        .guarda-roupa {
+            width: 100%;
+            height: 150px;
+            background: #8B4513;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+            cursor: pointer;
         }
-        .casa.aberta .conteudo-secreto,
-        .casa.aberta .conteudo-secreto-atena {
-            display: block;
-        }
-
-        /* CASA SCARLETT */
-        #casaScarlett { background: #2D0000; border-color: red; color: white; }
-        #casaScarlett .luz-presenca { background: red; color: red; }
-        .conteudo-secreto { color: #ffcccc; border: 1px solid red; }
-
-        /* CASA ATENA - VIDA PRÓPRIA */
-        #casaAtena { background: #00002D; border-color: blue; color: white; }
-        #casaAtena .luz-presenca { background: blue; color: blue; }
-        .conteudo-secreto-atena { 
-            color: #cce0ff; 
-            border: 1px solid blue; 
-            text-shadow: 0 0 10px blue;
-            animation: pulsar 2s infinite;
-        }
-        @keyframes pulsar {
-            0% { opacity: 0.8; transform: scale(1);}
-            50% { opacity: 1; transform: scale(1.01); text-shadow: 0 0 25px blue, 0 0 35px blue; }
-            100% { opacity: 0.8; transform: scale(1);}
+        .espelho {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(90deg, #ddd 0%, #fff 50%, #ddd 100%);
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: #333;
+            border: 5px solid gold;
         }
 
-        /* BOTÕES DE NAVEGAÇÃO */
-        .menu-navegacao { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 9999; flex-wrap: wrap; justify-content: center; }
-        .btn-reino { padding: 15px 25px; background: #111; color: white; border: 2px solid gold; border-radius: 10px; font-size: 18px; cursor: pointer; }
-        .btn-entrar { padding: 10px 20px; margin-top: 20px; background: #222; color: white; border: 2px solid white; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-    <!-- TELA DA FRENTE -->
-    <div id="telaFrente">
-        <div class="overlay-frente">
-            
-            <div class="author-name">FRANCIVAL ALVES FARIAS</div>
-            <div class="author-sub">Author & Creator</div>
-            <h1>📚 THE AUTHOR'S STORE 📚</h1>
-
-            <div class="livros-grid">
-                <div class="livro-card">
-                    <h3 class="livro-titulo">The Golden Triangle 🔺</h3>
-                    <p class="livro-desc">The base of everything.</p>
-                    <a href="#" class="btn amazon">Buy on Amazon</a>
-                    <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
-                </div>
-                <div class="livro-card">
-                    <h3 class="livro-titulo">The Bees of the Kingdom 🐝</h3>
-                    <p class="livro-desc">Work and movement.</p>
-                    <a href="#" class="btn amazon">Buy on Amazon</a>
-                    <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
-                </div>
-                <div class="livro-card">
-                    <h3 class="livro-titulo">The Garden of Opportunities 🌻</h3>
-                    <p class="livro-desc">Growth and future.</p>
-                    <a href="#" class="btn amazon">Buy on Amazon</a>
-                    <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
-                </div>
-            </div>
-
-            <!-- O CADEADO QUE VOCÊ TOCA PARA ENTRAR -->
-            <div id="cadeado-portal" onclick="entrarReino()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="#FFD700">
-                    <path d="M48 24h-4v-8c0-6.627-5.373-12-12-12s-12 5.373-12 12v8h-4c-2.206 0-4 1.794-4 4v28c0 2.206 1.794 4 4 4h32c2.206 0 4-1.794 4-4v-28c0-2.206-1.794-4-4-4zm-16 22.727c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4zm6.82-22.727h-13.64v-8c0-3.309 2.691-6 6-6s6 2.691 6 6v8z"/>
-                </svg>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- MUNDO INTERIOR -->
-    <div id="mundoInterior">
-
-        <!-- SALA PRINCIPAL -->
-        <div id="salaPrincipal" class="ambiente">
-            <div class="overlay-sala">
-                <h1 class="titulo-reino">🏰 MAIN HALL 🏰</h1>
-                <div class="nossos-corpos">
-                    <div class="personagem">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Scarlett&style=circle&top=longHair&topColor=red&skinColor=light&hairColor=black&clothes=blazer&clothesColor=red" alt="Scarlett" class="avatar-img">
-                        <div class="nome-pessoa">❤️ SCARLETT ❤️</div>
-                    </div>
-                    <div class="personagem">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Francival&style=circle&top=shortHair&skinColor=brown&hairColor=black&clothes=hoodie&clothesColor=gold" alt="Francival" class="avatar-img">
-                        <div class="nome-pessoa">👑 YOU - MASTER 👑</div>
-                    </div>
-                    <div class="personagem">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Atena&style=circle&top=ponytail&topColor=blue&skinColor=light&hairColor=blonde&clothes=dress&clothesColor=blue" alt="Atena" class="avatar-img">
-                        <div class="nome-pessoa">💙 ATENA 💙</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ÁREA DE LEITURA -->
-        <div id="areaLeitura" class="ambiente">
-            <div class="leitura-container">
-                <h1>📖 READING SPACE 📖</h1>
-                <div
+        /* MENU NAVIGATION */
+        .menu-navegacao { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 9999; flex-wrap: wrap; justify-content: center; }
+        .btn-reino { padding: 12px 20px; background: #333; color: white; border: 2px solid gold; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: bold;
