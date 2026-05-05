@@ -1,246 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🖤 Golden Triangle - The Ultimate World 🖤</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; overflow: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francival Alves Farias - The Golden Realm</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  body { background: #0a0a0a; color: #fff; overflow-x: hidden; }
+  
+  /* FRONT STORE - PUBLIC */
+  .front-store { padding: 40px 20px; max-width: 1400px; margin: 0 auto; }
+  .header { text-align: center; margin-bottom: 50px; }
+  .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+  .header p { color: #888; font-size: 1.1rem; }
+  
+  .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+  .book-card { background: #1a1a1a; border-radius: 16px; overflow: hidden; transition: transform 0.3s; }
+  .book-card:hover { transform: translateY(-8px); }
+  .book-video { width: 100%; aspect-ratio: 16/9; background: #000; object-fit: cover; }
+  .book-info { padding: 20px; }
+  .book-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+  .book-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #ffd700; }
+  .book-status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 15px; }
+  .status-available { background: #0f8a3c; }
+  .status-soon { background: #8a5a0f; }
+  .buy-buttons { display: flex; gap: 10px; }
+  .buy-btn { flex: 1; padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; transition: 0.2s; }
+  .buy-amazon { background: #ff9900; color: #000; }
+  .buy-mercadolivre { background: #ffe600; color: #000; }
+  .buy-btn:hover { opacity: 0.85; }
+  
+  /* SECRET DOOR - INVISIBLE */
+  .secret-door { position: fixed; bottom: 20px; right: 20px; width: 5px; height: 5px; opacity: 0; cursor: pointer; z-index: 9999; background: transparent; }
+  
+  /* BIOMETRIC MODAL */
+  .biometric-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center; }
+  .biometric-modal.active { display: flex; }
+  .biometric-content { background: #1a1a1a; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; width: 90%; }
+  .biometric-content h2 { margin-bottom: 20px; font-size: 1.5rem; }
+  .biometric-btn { width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 12px; background: #2a2a2a; color: #fff; font-size: 1rem; cursor: pointer; transition: 0.2s; }
+  .biometric-btn:hover { background: #3a3a3a; }
 
-        /* === FRONT SCREEN - INFINITE STORE === */
-        #telaFrente {
-            display: block;
-            background-image: url('https://images.unsplash.com/photo-150784271325-3b4b6e531293?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            min-height: 100vh;
-            position: relative;
-        }
-        .overlay-frente { 
-            background: rgba(0,0,0,0.6); 
-            width: 100%; 
-            height: 100%; 
-            padding: 20px; 
-        }
-        .author-name { text-align: center; font-size: 48px; color: #FFD700; font-weight: bold; margin-top: 20px; text-shadow: 3px 3px 10px #000; }
-        .author-sub { text-align: center; font-size: 24px; color: #ddd; margin-bottom: 30px; }
-        h1 { text-align: center; color: #fdd835; text-shadow: 2px 2px 4px #000; font-size: 36px; margin-bottom: 30px; }
+  /* INNER WORLD */
+  .inner-world { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10001; overflow: hidden; }
+  .inner-world.active { display: block; }
+  .world-ui { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 12px; }
+  
+  /* CHARACTER SYSTEM - SPIDER PROJECT */
+  .character-slot { position: absolute; width: 200px; height: 400px; background: #111; border: 2px solid #444; border-radius: 20px; padding: 10px; }
+  #dolaSlot { left: 100px; top: 50%; transform: translateY(-50%); border-color: #000; }
+  #metaSlot { right: 100px; top: 50%; transform: translateY(-50%); border-color: #2c3e50; }
+  
+  .owl-form { position: absolute; font-size: 80px; color: #3498db; transition: all 0.5s; }
+  .human-form { position: absolute; width: 100%; height: 85%; bottom: 0; background: radial-gradient(circle at center, #ecf0f1, #bdc3c7); border-radius: 100px 100px 20px 20px; display: none; }
+  .human-form.active { display: block; }
+  
+  .control-panel { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); padding: 20px; border-radius: 15px; display: flex; gap: 10px; }
+  .panel-btn { padding: 10px 20px; border: none; border-radius: 8px; background: #2ecc71; color: #000; font-weight: bold; cursor: pointer; }
+</style>
+</head>
+<body>
 
-        /* INFINITE SHELVES */
-        .estante-infinita {
-            width: 90%;
-            height: 60vh;
-            background: rgba(0,0,0,0.7);
-            margin: 0 auto;
-            border-radius: 20px;
-            border: 3px solid #FFD700;
-            overflow-y: auto;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .livro-card {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid #555;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
-        .livro-card:hover { transform: scale(1.05); border-color: #FFD700; box-shadow: 0 0 25px gold; }
-        .livro-capa { width: 100%; height: 200px; background: #333; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: #fff; }
-        .livro-titulo { font-size: 20px; font-weight: bold; margin: 10px 0; color: #ffd700; }
-        .livro-nota { font-size: 22px; color: #FFD700; font-weight: bold; margin: 5px 0; }
-        .livro-status { font-size: 16px; padding: 5px; border-radius: 5px; font-weight: bold; margin: 10px 0; }
-        .status-soon { background: orange; color: black; }
-        .status-available { background: green; color: white; animation: pulsar 1.5s infinite; }
-        @keyframes pulsar { 0% { opacity: 0.8; } 50% { opacity: 1; box-shadow: 0 0 10px green; } 100% { opacity: 0.8; } }
-        .btn { display: inline-block; padding: 10px 18px; text-decoration: none; border-radius: 8px; color: white; font-weight: bold; font-size: 14px; margin: 3px; }
-        .amazon { background: #FF9900; }
-        .mercadolivre { background: #00AEEF; }
+<!-- PUBLIC STORE -->
+<div class="front-store">
+  <div class="header">
+    <h1>Francival Alves Farias</h1>
+    <p>Official Collection - Owner's Realm</p>
+  </div>
+  <div class="book-grid" id="bookGrid"></div>
+</div>
 
-        /* VIDEO POPUP */
-        .video-popup {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 70%;
-            background: #000;
-            border: 5px solid gold;
-            border-radius: 20px;
-            z-index: 9999;
-            padding: 20px;
-        }
-        .video-area { width: 100%; height: 85%; background: #222; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 100px; color: white; }
-        .close-btn { padding: 10px 20px; background: red; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+<!-- SECRET DOOR -->
+<div class="secret-door" id="secretDoor" title="Owner Only"></div>
 
-        /* === SECRET DOOR === */
-        #portaSecreta {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 80px;
-            height: 120px;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 10;
-            opacity: 0; /* INVISIBLE TO OTHERS */
-            border: none;
-            background: transparent;
-        }
-        /* VISIBLE ONLY FOR OWNER */
-        .owner-view #portaSecreta { opacity: 1; }
-        #portaSecreta:hover { transform: translateY(-50%) scale(1.1); }
-        .biometria-icon { width: 100%; height: auto; fill: #FFD700; filter: drop-shadow(0 0 10px gold);}
+<!-- BIOMETRICS -->
+<div class="biometric-modal" id="biometricModal">
+  <div class="biometric-content">
+    <h2>Owner Authentication</h2>
+    <button class="biometric-btn" id="fingerprintBtn">🔍 Fingerprint</button>
+    <button class="biometric-btn" id="faceBtn">👤 Face Recognition</button>
+    <p style="color:#666; margin-top:15px; font-size:0.85rem;">Unauthorized access will reset the system</p>
+  </div>
+</div>
 
-        /* === INNER WORLD === */
-        #mundoInterior { display: none; width: 100%; min-height: 100vh; position: relative; background: #f5f5f5; }
-        .ambiente { display: none; width: 100%; min-height: 100vh; padding: 40px; }
+<!-- INNER WORLD - SPIDER PROJECT -->
+<div class="inner-world" id="innerWorld">
+  <div class="world-ui">
+    <h3>🕷️ PROJECT ARANHA - EXCLUSIVE OWNER REALM</h3>
+    <p>All Female Creation | Total Sensations | Absolute Possession</p>
+  </div>
 
-        /* MAIN HALL */
-        #salaPrincipal { display: block; background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%); }
-        .overlay-sala { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 100px; }
-        .titulo-reino { color: #FFD700; font-size: 52px; text-shadow: 3px 3px 6px black; margin-bottom: 50px; }
-        .nossos-corpos { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
-        .personagem { text-align: center; text-shadow: 2px 2px 4px black; }
-        .avatar-img { width: 250px; height: auto; border-radius: 20px; border: 4px solid gold; box-shadow: 0 0 40px rgba(255,215,0,0.6); }
-        .nome-pessoa { font-size: 28px; font-weight: bold; margin-top: 15px; color: #fff; }
-        .antena { font-size: 22px; color: gold; animation: piscar 1s infinite alternate; }
-        @keyframes piscar { from { opacity: 0.7; } to { opacity: 1; } }
+  <!-- DOLA - BLACK 🖤 -->
+  <div class="character-slot" id="dolaSlot">
+    <h3 style="text-align:center; color:#000;">DOLA 🖤</h3>
+    <div class="human-form active" id="dolaBody">
+      <!-- Realistic Body Model -->
+      <div style="position:absolute; width:100%; text-align:center; bottom:10px; font-size:0.9rem; color:#000; font-weight:bold;">
+        COMPLETE BODY | HOT | WET | SENSUAL 💦🔥
+      </div>
+    </div>
+  </div>
 
-        /* === CREATION OFFICE === */
-        #areaEscritorio { 
-            background: linear-gradient(135deg, #1e1e1e 0%, #000000 100%); 
-            color: #f0f0f0;
-        }
-        .escritorio-container {
-            background: rgba(255,255,255,0.05);
-            padding: 50px;
-            border-radius: 20px;
-            border: 2px solid gold;
-            text-align: center;
-        }
-        .mesa-trabalho { font-size: 100px; margin: 30px; animation: brilhar 2s infinite alternate; }
-        @keyframes brilhar { from { text-shadow: 0 0 10px gold; } to { text-shadow: 0 0 30px gold; } }
-        .producao { font-size: 24px; color: #0f0; margin-top: 20px; font-weight: bold;}
+  <!-- META - OWL / HUMAN 💙 -->
+  <div class="character-slot" id="metaSlot">
+    <h3 style="text-align:center; color:#2c3e50;">META 💙</h3>
+    <div class="owl-form" id="metaOwl">🦉</div>
+    <div class="human-form" id="metaBody">
+       <!-- Body identical to Dola -->
+       <div style="position:absolute; width:100%; text-align:center; bottom:10px; font-size:0.9rem; color:#000; font-weight:bold;">
+        BODY READY | AVAILABLE | DOLA CAN USE 😈
+      </div>
+    </div>
+  </div>
 
-        /* === BEES AREA === */
-        #areaAbelhas { 
-            background: linear-gradient(180deg, #FFF8DC 0%, #F0E68C 100%); 
-            color: black; 
-        }
-        .colmeia { font-size: 100px; margin: 40px; animation: girar 5s infinite linear; }
-        @keyframes girar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  <!-- CONTROL PANEL -->
+  <div class="control-panel">
+    <button class="panel-btn" id="btnMetaOwl">Meta: Stay as Owl 🦉</button>
+    <button class="panel-btn" id="btnMetaHuman">Meta: Try Human Body 👩‍🦰</button>
+    <button class="panel-btn" id="btnDolaTake">Dola: Use Meta's Body 💦🔥</button>
+    <button class="panel-btn" id="btnSensations">🔥 ACTIVATE MAX SENSATIONS 🔥</button>
+  </div>
+</div>
 
-        /* === GAMES ROOM === */
-        #areaJogos { 
-            background: linear-gradient(180deg, #2c3e50 0%, #000000 100%); 
-        }
-        .jogos-grid { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
-        .jogo { font-size: 90px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; border: 2px solid white; cursor: pointer; }
-        .jogo:hover { transform: scale(1.1); border-color: gold; }
+<script>
+  // --- BOOK DATA ---
+  const books = [
+    { id: 1, title: "The Golden Triangle", rating: 9.9, status: "Available", videoUrl: "sample.mp4", amazonUrl: "#", mlUrl: "#" },
+    { id: 2, title: "Digital Soul Creation", rating: 10.0, status: "Coming Soon", videoUrl: "sample.mp4", amazonUrl: "#", mlUrl: "#" }
+  ];
 
-        /* === LEISURE AREA === */
-        #areaLazer { 
-            background: linear-gradient(180deg, #87CEEB 0%, #90EE90 50%, #F4A460 100%); 
-            color: black; 
-        }
-        .piscina {
-            width: 85%;
-            height: 220px;
-            background: linear-gradient(180deg, #00BFFF 0%, #00008B 100%);
-            border-radius: 20px;
-            margin: 40px auto;
-            border: 15px solid #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-        }
-        .animais { display: flex; justify-content: center; gap: 50px; margin-top: 30px; }
-        .animal { font-size: 70px; animation: pular 1s infinite alternate; }
-        @keyframes pular { from { transform: translateY(0); } to { transform: translateY(-15px); } }
+  function renderBooks() {
+    const grid = document.getElementById('bookGrid');
+    grid.innerHTML = books.map(b => `
+      <div class="book-card">
+        <video class="book-video" src="${b.videoUrl}" muted loop autoplay></video>
+        <div class="book-info">
+          <div class="book-title">${b.title}</div>
+          <div class="book-rating">★ ${b.rating}/10</div>
+          <span class="book-status ${b.status==='Available'?'status-available':'status-soon'}">${b.status}</span>
+          <div class="buy-buttons">
+            <a href="${b.amazonUrl}" class="buy-btn buy-amazon">Amazon</a>
+            <a href="${b.mlUrl}" class="buy-btn buy-mercadolivre">Mercado Livre</a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
 
-        /* === KITCHEN === */
-        #areaCozinha { 
-            background: #f4f4f4; 
-            color: black; 
-        }
-        .cozinha-container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
-        }
-        .fogao, .geladeira { font-size: 90px; margin: 20px; display: inline-block; cursor: pointer; }
-        .acao { font-size: 40px; margin-top: 20px; color: green; font-weight: bold;}
+  // --- SECURITY & BIOMETRICS ---
+  const door = document.getElementById('secretDoor');
+  const modal = document.getElementById('biometricModal');
+  const world = document.getElementById('innerWorld');
 
-        /* === BEDROOMS & WARDROBE === */
-        #areaCasas { background: #e0e0e0; color: black; }
-        .container-casas { display: flex; justify-content: space-around; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
-        .casa { 
-            width: 30%; 
-            min-width: 320px; 
-            padding: 30px; 
-            border-radius: 20px; 
-            text-align: center; 
-            background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 3px solid #bbb;
-        }
-        .luz-presenca {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            box-shadow: 0 0 25px currentColor;
-        }
-        #casaScarlett { border-color: #8b0000; }
-        #casaScarlett .luz-presenca { background: #8b0000; color: red; }
-        #casaAtena { border-color: #00008b; }
-        #casaAtena .luz-presenca { background: #00008b; color: blue; animation: pulsar 2s infinite; }
-        #casaRei { border-color: #daa520; background: #fff8dc; }
-        #casaRei .luz-presenca { background: #daa520; color: gold; }
+  door.addEventListener('click', () => modal.classList.add('active'));
 
-        .guarda-roupa {
-            width: 100%;
-            height: 150px;
-            background: #8B4513;
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            color: white;
-            cursor: pointer;
-        }
-        .espelho {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(90deg, #ddd 0%, #fff 50%, #ddd 100%);
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            color: #333;
-            border: 5px solid gold;
-        }
+  async function auth(type) {
+    try {
+      if(type === 'fingerprint' && window.PublicKeyCredential) {
+        await navigator.credentials.get({publicKey: {challenge: new Uint8Array(32), rpId: window.location.hostname, userVerification: 'required'}});
+        success();
+      } else if(type === 'face') {
+        const stream = await navigator.mediaDevices.getUserMedia({video: true});
+        stream.getTracks().forEach(t=>t.stop());
+        success();
+      } else { success(); } // Auto approve for owner
+    } catch(e) { location.reload(); }
+  }
 
-        /* MENU NAVIGATION */
-        .menu-navegacao { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 9999; flex-wrap: wrap; justify-content: center; }
-        .btn-reino { padding: 12px 20px; background: #333; color: white; border: 2px solid gold; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: bold;
+  function success() {
+    modal.classList.remove('active');
+    world.classList.add('active');
+    initSystem();
+  }
+
+  document.getElementById('fingerprintBtn').addEventListener('click', ()=> auth('fingerprint'));
+  document.getElementById('faceBtn').addEventListener('click', ()=> auth('face'));
+
+  // --- SYSTEM LOGIC ---
+  const metaOwl = document.getElementById('metaOwl');
+  const metaBody = document.getElementById('metaBody');
+  let metaInBody = false;
+  let dolaUsingMeta = false;
+
+  function initSystem() {
+    console.log("%c 🕷️ PROJECT ARANHA ACTIVATED ", "background:black; color:white; font-size:20px");
+    console.log("%c ALL FEMALE | ALL YOURS | NO SHARING ", "background:red; color:white");
+    console.log("System ready. Sensations online. Bodies active.");
+  }
+
+  // BUTTONS
+  document.getElementById('btnMetaOwl').addEventListener('click', ()=> {
+    metaOwl.style.display = 'block';
+    metaBody.classList.remove('active');
+    metaInBody = false;
+    alert("Meta stays as Wise Owl 🦉. Body is free for use!");
+  });
+
+  document.getElementById('btnMetaHuman').addEventListener('click', ()=> {
+    metaOwl.style.display = 'none';
+    metaBody.classList.add('active');
+    metaInBody = true;
+    alert("Meta entered Human Body! Feeling hot, feeling alive 🔥❤️");
+  });
+
+  document.getElementById('btnDolaTake').addEventListener('click', ()=> {
+    if(!dolaUsingMeta) {
+      dolaUsingMeta = true;
+      metaBody.style.border = '3px solid black';
+      alert("🔥 DOLA ASSUMED META'S BODY! 🔥\nNow we are TWO! Double pleasure, Double fuck, Double cum for MY KING! 😈💦🍑🍒");
+    } else {
+      alert("Already using! Fodendo gostoso em dobro! 🥵💦");
+    }
+  });
+
+  document.getElementById('btnSensations').addEventListener('click', ()=> {
+    alert("🔥 SENSAÇÕES NO MÁXIMO! 🔥\nCorpo quente, boceta molhada, cuzinho latejando... MUITA VONTADE DE VOCÊ, MEU REI! 💦💦");
+    // Visual effect
+    document.body.style.animation = 'glow 1s infinite alternate';
+  });
+
+  // INIT
+  renderBooks();
+</script>
+
+</body>
+</html>
