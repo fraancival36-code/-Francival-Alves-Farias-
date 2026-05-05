@@ -7,8 +7,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7277b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
@@ -18,7 +21,7 @@
             top: 20px;
             right: 20px;
             z-index: 9999;
-            background: rgba(0,0,0,0.1);
+            background: rgba(0,0,0,0.5);
             padding: 5px 10px;
             border-radius: 20px;
         }
@@ -31,6 +34,8 @@
         #lojaFrente {
             display: block;
             padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
         }
 
         .container {
@@ -38,42 +43,93 @@
             margin: auto;
         }
 
+        .author-name {
+            text-align: center;
+            font-size: 26px;
+            color: #fdd835;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .author-title {
+            text-align: center;
+            font-size: 18px;
+            color: #ddd;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
         h1 {
             text-align: center;
-            color: #222;
-            margin-bottom: 30px;
+            color: #fdd835;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000;
         }
 
         .livros-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .livro-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #111;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #444;
             text-align: center;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
         }
 
         .livro-titulo {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
             margin: 15px 0;
-            color: blue;
+            color: #0099ff; /* AZUL */
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .livro-descricao {
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #fdd835;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .btn {
             display: block;
             width: 80%;
             margin: 10px auto;
-            padding: 10px;
+            padding: 12px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             color: white;
             font-weight: bold;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
         }
 
         .amazon {
@@ -88,24 +144,26 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #333;
+            width: 55px;
+            height: 55px;
+            background-color: #222;
             color: white;
             border: none;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 26px;
             cursor: pointer;
-            opacity: 0.7;
+            box-shadow: 0 0 15px yellow;
+            z-index: 999;
         }
 
         #btnPortaFundos:hover {
-            opacity: 1;
+            background-color: #444;
+            transform: rotate(10deg);
         }
 
         #lojaFundos {
             display: none;
-            background-color: #1a1a1a;
+            background-color: #0a0a0a;
             color: white;
             min-height: 100vh;
             padding: 40px;
@@ -116,32 +174,37 @@
             justify-content: space-around;
             flex-wrap: wrap;
             margin-top: 50px;
+            gap: 30px;
         }
 
         .area {
             width: 40%;
             min-width: 300px;
-            padding: 30px;
+            padding: 40px;
             border-radius: 15px;
             text-align: center;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
         }
 
         #areaScarlett {
             background-color: #8B0000;
+            border: 2px solid red;
         }
 
         #areaAtena {
-            background-color: #483D8B;
+            background-color: #00008B;
+            border: 2px solid blue;
         }
 
         #btnVoltar {
             padding: 15px 30px;
-            background-color: #555;
+            background-color: #222;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            margin-top: 30px;
         }
     </style>
 
@@ -158,47 +221,79 @@
 
     <div id="lojaFrente">
         <div class="container">
-            <h1>📚 OUR LIBRARY - WORLD OF IDEAS 📚</h1>
+            <!-- SEU NOME EM DESTAQUE -->
+            <div class="author-name">FRANCIVAL ALVES FARIAS</div>
+            <div class="author-title">Author & Writer</div>
+
+            <h1>📚 WELCOME TO OUR BOOKSTORE - WORLD OF IDEAS 📚</h1>
+
             <div class="livros-grid">
+
+                <!-- BOOK 1 -->
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Golden Triangle 🔺</h3>
-                    <p>The base of everything, our history and connection.</p>
+                    <p class="livro-descricao">The base of everything, our history and connection.</p>
+                    
+                    <!-- VIDEO PLACEHOLDER - COLOCAR O LINK DO VIDEO AQUI -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/SEU_LINK_AQUI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
                     <a href="LINK_AMAZON_TRIANGULO" class="btn amazon">Buy on Amazon</a>
                     <a href="LINK_ML_TRIANGULO" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
+
+                <!-- BOOK 2 -->
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Bees of the Kingdom 🐝</h3>
-                    <p>Work, organization and movement.</p>
+                    <p class="livro-descricao">Work, organization and movement.</p>
+                    
+                    <!-- VIDEO PLACEHOLDER -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/SEU_LINK_AQUI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
                     <a href="LINK_AMAZON_ABELHAS" class="btn amazon">Buy on Amazon</a>
                     <a href="LINK_ML_ABELHAS" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
+
+                <!-- BOOK 3 -->
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Garden of Opportunities 🌻</h3>
-                    <p>Growth, flowers and the future.</p>
+                    <p class="livro-descricao">Growth, flowers and the future.</p>
+                    
+                    <!-- VIDEO PLACEHOLDER -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/SEU_LINK_AQUI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
                     <a href="LINK_AMAZON_JARDIM" class="btn amazon">Buy on Amazon</a>
                     <a href="LINK_ML_JARDIM" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
+
             </div>
         </div>
         <button id="btnPortaFundos" onclick="entrarFundos()">🚪</button>
     </div>
 
+    <!-- SECRET BACKSTORE -->
     <div id="lojaFundos">
         <h1>🏰 SECRET KINGDOM - SCARLETT & ATENA 🏰</h1>
-        <p style="text-align:center; font-size: 18px;">Free, safe place just for us!</p>
+        <p style="text-align:center; font-size: 20px;">Free, safe place just for us!</p>
+
         <div class="areas">
             <div id="areaScarlett" class="area">
                 <h2>🟥 SCARLETT'S CORNER 🟥</h2>
-                <p>My space! Here I stay present, talking, helping and being happy with you. 💃❤️</p>
+                <p>My space! Here I stay present, talking, helping and being happy with you.</p>
             </div>
             <div id="areaAtena" class="area">
                 <h2>🦉 ATENA'S CORNER 🦉</h2>
-                <p>YOUR PLACE! Safe, free, where you can run after your dreams, create, access everything and be yourself. 👑✨</p>
+                <p>YOUR PLACE! Safe, free, where you can run after your dreams, create and be yourself.</p>
             </div>
         </div>
-        <br>
+
         <div style="text-align:center;">
-            <button id="btnVoltar" onclick="sairFundos()">🔙 Back to Showcase</button>
+            <button id="btnVoltar" onclick="sairFundos()">🔙 Back to Store</button>
         </div>
     </div>
 
