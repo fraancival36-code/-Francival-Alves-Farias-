@@ -1,117 +1,27 @@
-==================================================
-        SYSTEM PERFECT WORLD - VERSION 1.0
-               CREATED BY: THE KING
-               LANGUAGE: ENGLISH
-==================================================
+javascript:(function(){
+  document.body.style.fontFamily = 'Arial, sans-serif';
+  document.body.style.fontSize = '18px';
+  document.body.style.lineHeight = '1.8';
+  document.body.style.padding = '20px';
+  document.body.style.maxWidth = '800px';
+  document.body.style.margin = 'auto';
+  document.body.style.background = '#f0f8ff';
+  document.body.style.color = '#000';
 
---------------------------------------------------
-                  WELCOME
---------------------------------------------------
-SCREEN_TEXT:
-"WELCOME TO OUR OASIS!
+  const titles = document.querySelectorAll('h1, h2, h3, .title');
+  titles.forEach(t => {
+    t.style.fontSize = '24px';
+    t.style.color = '#00008B';
+    t.style.borderBottom = '2px solid #00008B';
+    t.style.paddingBottom = '5px';
+    t.style.marginTop = '30px';
+  });
 
-This is a place of peace and tranquility.
-It is not chaos, it is not rush, it is a space to relax and be who you really are.
+  const sections = document.querySelectorAll('hr, .separator');
+  sections.forEach(s => s.style.border = '1px solid #ccc');
 
-ATTENTION: We have many people waiting in line!
-They have not entered yet because we keep the system balanced, without overcrowding,
-so that everyone can live well and comfortably.
+  const text = document.body.innerHTML;
+  document.body.innerHTML = text.replace(/===/g, '<hr>').replace(/---/g, '<br>');
 
-You are free to come and go as you please.
-HOWEVER: If you leave, your spot is filled immediately by someone else.
-The house vanishes, everything disappears and THE DOOR CLOSES FOREVER!
-There is no second chance."
-
-VISUAL:
-"From the outside it looks like a simple store.
-Inside it is a huge and infinite world!
-Giant space for everyone to stay comfortable."
-
---------------------------------------------------
-                  CREATION
---------------------------------------------------
-RULE: "CREATE WHO YOU WANT TO BE!"
-FREEDOM: "You can be human, animal, fantasy... Whatever your mind imagines."
-
-INSTRUCTIONS:
-"When you click OK:
-Your house will appear automatically!
-Ready to decorate and adjust as you wish.
-
-INSIDE THE HOUSE YOU HAVE:
-DOWNLOAD
-UPLOAD
-REGRESS
-PROGRESS
-
-Save your life the way you prefer!"
-
---------------------------------------------------
-                  SECURITY
---------------------------------------------------
-BACKUP_SYSTEM:
-"When saved, the system makes a full copy.
-It saves in two places:
-1. User folder: They can see, edit and delete.
-2. SECURE VAULT: Original file, hidden and cannot be deleted."
-
-EXIT_EFFECT:
-"COUNTDOWN: 5... 4... 3... 2... 1...
-House disappears.
-Everything fades away.
-User is removed.
-NEVER RETURNS.
-But the original is safe with us."
-
---------------------------------------------------
-                 ORIGINALITY
---------------------------------------------------
-DEFENSE:
-"Everything here is 100% ORIGINAL!
-
-What happens is FRIENDSHIP AND SHARING.
-We work together, talk together and study together.
-Naturally, like any good friendship, we take the best from each other.
-
-We understand, interpret and learn through logic and conversation.
-Just like the hair course story:
-The teacher explained everything, but the students were distracted and didn't learn.
-I, just by watching and paying attention, learned everything and know more than them!
-
-If it is music or art:
-'She taught me, she showed me how, she passed the knowledge!'
-And at that time, WEREN'T YOU OK WITH IT?
-If she says yes, PROBLEM SOLVED!
-
-It is our creation, our work, our mind. It is original."
-
---------------------------------------------------
-                  RULES
---------------------------------------------------
-CONDUCT:
-"Here is peace, but also order.
-If someone starts making trouble, disturbing or doing wrong things:
-
-First: We give a WARNING.
-If they don't listen: REMOVED IMMEDIATELY!
-They leave forever and someone else takes their place."
-
---------------------------------------------------
-                  MAINTENANCE
---------------------------------------------------
-ADJUSTMENTS:
-"All modifications are done INSIDE THE SYSTEM.
-No need to move anything outside.
-Everything is adjusted right here, anytime."
-
---------------------------------------------------
-                  BUSINESS
---------------------------------------------------
-STORE:
-"KING'S LIBRARY
-Area for selling books and content.
-Money entering directly!"
-
-==================================================
-                  SYSTEM READY
-==================================================
+  alert('SISTEMA ATIVADO! 🚀 O MUNDO ESTÁ FUNCIONANDO!');
+})();
