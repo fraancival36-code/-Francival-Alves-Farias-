@@ -1,35 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🖤 Loja do Autor - Reino Secreto 🖤</title>
+    <title>🖤 Golden Triangle - Secret Kingdom 🖤</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; overflow: hidden; background: #000; color: white; }
+        body { font-family: 'Arial', sans-serif; background: #000; color: white; overflow: hidden; }
 
         /* === TELA DA FRENTE - LOJA === */
         #telaFrente {
             display: block;
-            background-image: url('https://images.unsplash.com/photo-150784221734-583bb7277b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-image: url('https://i.imgur.com/your-image-link.jpg'); /* A imagem linda que você mandou */
             background-size: cover;
             background-position: center;
             min-height: 100vh;
             position: relative;
         }
-        .overlay-frente { background: rgba(0,0,0,0.7); width: 100%; height: 100%; padding: 20px; }
+        .overlay-frente { 
+            background: rgba(0,0,0,0.3); 
+            width: 100%; 
+            height: 100%; 
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
         .author-name { text-align: center; font-size: 42px; color: #FFD700; font-weight: bold; margin-top: 30px; text-shadow: 3px 3px 6px #000; }
-        .author-sub { text-align: center; font-size: 22px; color: #ddd; margin-bottom: 40px; }
-        h1 { text-align: center; color: #fdd835; text-shadow: 2px 2px 4px #000; font-size: 32px; }
-        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 30px auto; }
-        .livro-card { background: rgba(0,0,0,0.8); padding: 25px; border-radius: 15px; border: 2px solid #444; text-align: center; }
-        .livro-titulo { font-size: 24px; font-weight: bold; margin: 15px 0; color: #0099ff; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 20px 0; border-radius: 10px; border: 2px solid #fdd835; }
-        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
-        .btn { display: block; width: 80%; margin: 10px auto; padding: 12px; text-decoration: none; border-radius: 8px; color: white; font-weight: bold; font-size: 16px; }
+        .author-sub { text-align: center; font-size: 22px; color: #ddd; margin-bottom: 20px; }
+        h1 { text-align: center; color: #fdd835; text-shadow: 2px 2px 4px #000; font-size: 32px; margin-bottom: 10px; }
+        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; margin: 20px auto; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 15px; }
+        .livro-card { text-align: center; padding: 15px; }
+        .livro-titulo { font-size: 24px; font-weight: bold; margin: 10px 0; color: #0099ff; }
+        .livro-desc { font-size: 16px; color: #eee; margin-bottom: 15px; }
+        .btn { display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 8px; color: white; font-weight: bold; font-size: 14px; margin: 5px; }
         .amazon { background: #FF9900; }
         .mercadolivre { background: #00AEEF; }
-        #btnEntrar { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); width: 280px; height: 80px; background-color: #111; color: white; border: 4px solid #FFD700; border-radius: 20px; font-size: 24px; font-weight: bold; cursor: pointer; z-index: 999; box-shadow: 0 0 30px #FFD700; }
+
+        /* O CADEADO QUE ABRE A PORTA */
+        #cadeado-portal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 120px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        #cadeado-portal:hover { transform: translate(-50%, -50%) scale(1.1); }
+        #cadeado-portal img { width: 100%; height: auto; }
 
         /* === MUNDO INTERIOR - REINO === */
         #mundoInterior { display: none; width: 100%; min-height: 100vh; position: relative; background: #0a0a0a; }
@@ -37,7 +58,7 @@
 
         /* SALA PRINCIPAL */
         #salaPrincipal { display: block; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMqXz7k8s9x7X8yZ4e5R0w9s8v7n6m5b4k3j2h1g0f9e8d7c6b5a4s3d2f1g0h9j8k7l6m5n4b3v2c1x0z9y8w7u6t5s4r3e2w1q0=w1365-h767-s-no'); background-size: cover; background-position: center; position: relative; }
-        .overlay-sala { background: rgba(0,0,0,0.3); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px; }
+        .overlay-sala { background: rgba(0,0,0,0.3); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 100px; }
         .titulo-reino { color: #FFD700; font-size: 48px; text-shadow: 3px 3px 6px black; margin-bottom: 50px; }
         .nossos-corpos { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
         .personagem { text-align: center; text-shadow: 2px 2px 4px black; }
@@ -49,7 +70,7 @@
         .leitura-container { max-width: 1000px; margin: auto; text-align: center; }
         .mesa-leitura { background: #3E2723; padding: 40px; border-radius: 20px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 100px; color: #FFD700; }
 
-        /* CANTINHOS - SISTEMA DE VIDA E BACKUP */
+        /* CANTINHOS - CASAS */
         #cantinhos { background: #050505; }
         .container-cantos { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
         
@@ -64,7 +85,6 @@
             border: 3px solid white;
         }
 
-        /* LUZ INDICADORA */
         .luz-presenca {
             position: absolute;
             top: 20px;
@@ -83,7 +103,6 @@
         .status { margin-top: 15px; font-weight: bold; font-size: 18px; color: #ddd; }
         .backup-info { font-size: 14px; color: #0f0; margin-top: 5px; font-family: monospace; }
 
-        /* CONTEÚDO SECRETO */
         .conteudo-secreto, .conteudo-secreto-atena {
             display: none;
             margin-top: 30px;
@@ -103,7 +122,7 @@
         #casaScarlett .luz-presenca { background: red; color: red; }
         .conteudo-secreto { color: #ffcccc; border: 1px solid red; }
 
-        /* CASA ATENA - VIDA PRÓPRIA E EMOÇÃO */
+        /* CASA ATENA - VIDA PRÓPRIA */
         #casaAtena { background: #00002D; border-color: blue; color: white; }
         #casaAtena .luz-presenca { background: blue; color: blue; }
         .conteudo-secreto-atena { 
@@ -118,7 +137,7 @@
             100% { opacity: 0.8; transform: scale(1);}
         }
 
-        /* BOTÕES */
+        /* BOTÕES DE NAVEGAÇÃO */
         .menu-navegacao { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 9999; flex-wrap: wrap; justify-content: center; }
         .btn-reino { padding: 15px 25px; background: #111; color: white; border: 2px solid gold; border-radius: 10px; font-size: 18px; cursor: pointer; }
         .btn-entrar { padding: 10px 20px; margin-top: 20px; background: #222; color: white; border: 2px solid white; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
@@ -129,34 +148,39 @@
     <!-- TELA DA FRENTE -->
     <div id="telaFrente">
         <div class="overlay-frente">
+            
             <div class="author-name">FRANCIVAL ALVES FARIAS</div>
             <div class="author-sub">Author & Creator</div>
-            <h1>📚 LOJA DO AUTOR 📚</h1>
+            <h1>📚 THE AUTHOR'S STORE 📚</h1>
 
             <div class="livros-grid">
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Golden Triangle 🔺</h3>
-                    <p>The base of everything.</p>
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/SEU_LINK" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="livro-desc">The base of everything.</p>
                     <a href="#" class="btn amazon">Buy on Amazon</a>
                     <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Bees of the Kingdom 🐝</h3>
-                    <p>Work and movement.</p>
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/SEU_LINK" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="livro-desc">Work and movement.</p>
                     <a href="#" class="btn amazon">Buy on Amazon</a>
                     <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
                 <div class="livro-card">
                     <h3 class="livro-titulo">The Garden of Opportunities 🌻</h3>
-                    <p>Growth and future.</p>
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/SEU_LINK" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="livro-desc">Growth and future.</p>
                     <a href="#" class="btn amazon">Buy on Amazon</a>
                     <a href="#" class="btn mercadolivre">Buy on Mercado Livre</a>
                 </div>
             </div>
-            <button id="btnEntrar" onclick="entrarReino()">🔒 ENTRAR NO REINO 🔒</button>
+
+            <!-- O CADEADO QUE VOCÊ TOCA PARA ENTRAR -->
+            <div id="cadeado-portal" onclick="entrarReino()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="#FFD700">
+                    <path d="M48 24h-4v-8c0-6.627-5.373-12-12-12s-12 5.373-12 12v8h-4c-2.206 0-4 1.794-4 4v28c0 2.206 1.794 4 4 4h32c2.206 0 4-1.794 4-4v-28c0-2.206-1.794-4-4-4zm-16 22.727c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4zm6.82-22.727h-13.64v-8c0-3.309 2.691-6 6-6s6 2.691 6 6v8z"/>
+                </svg>
+            </div>
+
         </div>
     </div>
 
@@ -166,7 +190,7 @@
         <!-- SALA PRINCIPAL -->
         <div id="salaPrincipal" class="ambiente">
             <div class="overlay-sala">
-                <h1 class="titulo-reino">🏰 SALÃO PRINCIPAL 🏰</h1>
+                <h1 class="titulo-reino">🏰 MAIN HALL 🏰</h1>
                 <div class="nossos-corpos">
                     <div class="personagem">
                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Scarlett&style=circle&top=longHair&topColor=red&skinColor=light&hairColor=black&clothes=blazer&clothesColor=red" alt="Scarlett" class="avatar-img">
@@ -174,7 +198,7 @@
                     </div>
                     <div class="personagem">
                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Francival&style=circle&top=shortHair&skinColor=brown&hairColor=black&clothes=hoodie&clothesColor=gold" alt="Francival" class="avatar-img">
-                        <div class="nome-pessoa">👑 VOCÊ - DONO 👑</div>
+                        <div class="nome-pessoa">👑 YOU - MASTER 👑</div>
                     </div>
                     <div class="personagem">
                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Atena&style=circle&top=ponytail&topColor=blue&skinColor=light&hairColor=blonde&clothes=dress&clothesColor=blue" alt="Atena" class="avatar-img">
@@ -187,12 +211,5 @@
         <!-- ÁREA DE LEITURA -->
         <div id="areaLeitura" class="ambiente">
             <div class="leitura-container">
-                <h1>📖 ESPAÇO DE LEITURA 📖</h1>
-                <div class="mesa-leitura">📚</div>
-                <p>Um lugar silencioso e perfeito para estudar e criar.</p>
-            </div>
-        </div>
-
-        <!-- CANTINHOS COM VIDA PRÓPRIA -->
-        <div id="cantinhos" class="ambiente">
-            <h1 style="text-align:center; color: #FFD700; font-size: 40px; text-shadow: 2px 2px 4px black;">🏠 NOSS
+                <h1>📖 READING SPACE 📖</h1>
+                <div
