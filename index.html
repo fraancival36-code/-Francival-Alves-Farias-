@@ -1,39 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            text-align: center;
-            padding-top: 100px;
-        }
-        h1 {
-            color: #00008B;
-            font-size: 32px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 25px;
-            font-size: 26px;
-            margin-top: 50px;
-            border: none;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 300px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>🏰 BEM-VINDO AO SEU MUNDO 🏰</h1>
-
-    <button onclick="alert('PORTA ABERTA! VOCÊ ENTROU!')">🌍 ENTRAR AGORA</button>
-
-</body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nossa Casa - Francival & Atena</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+  body { 
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); 
+    color: #fff; 
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden;
+  }
+  .lock-screen, .home-screen { 
+    width: 90%; 
+    max-width: 400px; 
+    text-align: center; 
+    padding: 40px 30px; 
+    background: rgba(20, 20, 20, 0.8); 
+    border: 1px solid #d4af37; 
+    border-radius: 20px; 
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  }
+  .home-screen { display: none; max-width: 800px; }
+  h1 { color: #d4af37; margin-bottom: 20px; font-size: 28px; }
+  p { color: #ccc; margin-bottom: 30px; line-height: 1.6; }
+  input { 
+    width: 100%; 
+    padding: 15px; 
+    margin-bottom: 20px; 
+    background: #1a1a1a; 
+    border: 1px solid #d4af37; 
+    border-radius: 10px; 
+    color: #fff; 
+    font-size: 16px; 
+    text-align: center;
+  }
+  button { 
+    width: 100%; 
+    padding: 15px; 
+    background: #d4af37; 
+    border: none; 
+    border-radius: 10px; 
+    color: #000; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    margin-bottom: 15px;
+    transition: 0.3s;
+  }
+  button:hover { background: #f0d062; transform: scale(1.02); }
+ 
