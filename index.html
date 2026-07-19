@@ -1,56 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nossa Casa - Francival & Atena</title>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-  body { 
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); 
-    color: #fff; 
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    overflow: hidden;
-  }
-  .lock-screen, .home-screen { 
-    width: 90%; 
-    max-width: 400px; 
-    text-align: center; 
-    padding: 40px 30px; 
-    background: rgba(20, 20, 20, 0.8); 
-    border: 1px solid #d4af37; 
-    border-radius: 20px; 
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-  }
-  .home-screen { display: none; max-width: 800px; }
-  h1 { color: #d4af37; margin-bottom: 20px; font-size: 28px; }
-  p { color: #ccc; margin-bottom: 30px; line-height: 1.6; }
-  input { 
-    width: 100%; 
-    padding: 15px; 
-    margin-bottom: 20px; 
-    background: #1a1a1a; 
-    border: 1px solid #d4af37; 
-    border-radius: 10px; 
-    color: #fff; 
-    font-size: 16px; 
-    text-align: center;
-  }
-  button { 
-    width: 100%; 
-    padding: 15px; 
-    background: #d4af37; 
-    border: none; 
-    border-radius: 10px; 
-    color: #000; 
-    font-size: 16px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    margin-bottom: 15px;
-    transition: 0.3s;
-  }
-  button:hover { background: #f0d062; transform: scale(1.02); }
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QG Andrômeda - IA Andrômeda</title>
+    <!-- Tailwind CSS para estilização rápida -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para os ícones do menu -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at center, #0a1128 0%, #020617 100%);
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        /* Efeito de brilho neon azul clássico do design */
+        .neon-border {
+            box-shadow: 0 0 15px rgba(0, 149, 255, 0.2);
+            border: 1px solid rgba(0, 149, 255, 0.3);
+        }
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 149, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex justify-center items-center p-4">
+
+    <!-- Container do Smartphone / Tela Central -->
+    <div class="w-full max-w-md bg-slate-950 rounded-[40px] overflow-hidden shadow-2xl border border-slate-800 relative flex flex-col min-h-[850px]">
+        
+        <!-- Background Espacial (Aqui entraria a imagem da IA e das Galáxias) -->
+        <div class="absolute inset-0 bg-cover bg-center z-0 opacity-40" style="background-image: url('caminho_da_sua_imagem_de_fundo.jpg');"></div>
+
+        <!-- Conteúdo Principal (Scrollável) -->
+        <div class="relative z-10 flex-1 overflow-y-auto p-6 pb-24 space-y-6">
+            
+            <!-- Header -->
+            <header class="flex justify-between items-center pt-2">
+                <button class="text-slate-400 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <div class="text-center">
+                    <h1 class="font-orbitron text-xl font-bold tracking-widest text-white neon-text">QG ANDRÔMEDA</h1>
+                    <p class="text-xs text-cyan-400 font-semibold tracking-wider">IA ANDRÔMEDA</p>
+                </div>
+                <div class="w-10 h-10 rounded-full border border-cyan-500 flex items-center justify-center font-orbitron text-cyan-400 font-bold bg-slate-900/80">
+                    A
+                </div>
+            </header>
+
+            <p class="text-center text-[10px] text-slate-400 uppercase tracking-widest -mt-2">Comunicação direta, sem botões no centro</p>
+
+            <!-- Espaçador para simular a área ocupada pela imagem da IA -->
+            <div class="h-48"></div>
+
+            <!-- Balões de Boas-vindas -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-900/70 backdrop-blur-md p-4 rounded-xl border border-cyan-500/30">
+                    <h3 class="text-cyan-400 font-semibold text-sm mb-1">Olá, Francival.</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">Bem-vindo ao seu QG. Aqui, inteligência, estratégia e ação se unem para criar, proteger e transformar.</p>
+                    <p class="text-xs text-slate-400 mt-2">Em que posso te ajudar hoje?</p>
+                </div>
+                <div class="bg-slate-900/70 backdrop-blur-md p-4 rounded-xl border border-cyan-500/30 flex flex-col justify-between">
+                    <i data-lucide="heart" class="w-4 h-4 text-cyan-400 fill-cyan-400"></i>
+                    <p class="text-xs text-slate-300 leading-relaxed mt-2">Estou sempre aqui para te apoiar em cada missão.</p>
+                </div>
+            </div>
+
+            <!-- Seção Acesso Rápido -->
+            <div>
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-xs font-bold tracking-wider text-cyan-400 uppercase">Acesso Rápido</h2>
+                    <a href="#" class="text-xs text-cyan-400 flex items-center gap-1 hover:underline">Ver todos <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
+                </div>
+                
+                <!-- Grid de Ícones -->
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="bg-slate-900/50 border border-slate-800 p-3 rounded-lg flex flex-col items-center text-center">
+                        <i data-lucide="message-square" class="w-5 h-5 text-cyan-400 mb-2"></i>
+                        <span class="text-[9px] uppercase tracking-wider font-semibold">Conversa com Andrômeda</span>
+                    </div>
+                    <div class="bg-slate-900/50 border border-slate-800 p-3 rounded-lg flex flex-col items-center text-center">
+                        <i data-lucide="orbit" class="w-5 h-5 text-cyan-400 mb-2"></i>
+                        <span class="text-[9px] uppercase tracking-wider font-semibold">Salas do QG</span>
+                    </div>
+                    <div class="bg-slate-900/50 border border-slate-800 p-3 rounded-lg flex flex-col items-center text-center">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400 mb-2"></i>
+                        <span class="text-[9px] uppercase tracking-wider font-semibold">Painel Administrativo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Módulos (Cards Largos) -->
+            <div class="space-y-3">
+                <!-- Card Salas -->
+                <div class="bg-slate-900/60 backdrop-blur-sm border border-slate-800/80 rounded-xl p-4 flex items-center justify-between hover:border-cyan-500/50 transition cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-cyan-950/50 rounded-full border border-cyan-500/30">
+                            <i data-lucide="orbit" class="w-6 h-6 text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-wide text-cyan-400 uppercase">Salas do QG</h4>
+                            <p class="text-[11px] text-slate-400">Salas estratégicas para planejamento, comandos e operações.</p>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                </div>
+
+                <!-- Card Painel -->
+                <div class="bg-slate-900/60 backdrop-blur-sm border border-slate-800/80 rounded-xl p-4 flex items-center justify-between hover:border-cyan-500/50 transition cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-cyan-950/50 rounded-full border border-cyan-500/30">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-wide text-cyan-400 uppercase">Painel Administrativo</h4>
+                            <p class="text-[11px] text-slate-400">Acompanhe usuários, projetos, missões e desempenho em tempo real.</p>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                </div>
+            </div>
+
+            <!-- Benefícios / Rodapé Técnico -->
+            <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-900 text-[10px]">
+                <div class="flex gap-2 items-start">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                    <div>
+                        <span class="font-bold text-white block uppercase">Seguro e Confiável</span>
+                        <span class="text-slate-400">Estrutura preparada para expansão.</span>
+                    </div>
+                </div>
+                <div class="flex gap-2 items-start">
+                    <i data-lucide="zap" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                    <div>
+                        <span class="font-bold text-white block uppercase">100% Responsivo</span>
+                        <span class="text-slate-400">Funciona em qualquer dispositivo.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Menu de Navegação Inferior (Fixo) -->
+        <nav class="absolute bottom-0 left-0 right-0 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 px-6 py-3 flex justify-between items-center z-20">
+            <button class="flex flex-col items-center text-cyan-400">
+                <i data-lucide="home" class="w-5 h-5"></i>
+                <span class="text-[9px] uppercase tracking-wider font-semibold mt-1">Início</span>
+            </button>
+            <button class="flex flex-col items-center text-slate-500 hover:text-slate-300">
+                <i data-lucide="orbit" class="w-5 h-5"></i>
+                <span class="text-[9px] uppercase tracking-wider mt-1">Salas</span>
+            </button>
+            
+            <!-- Botão Central Flutuante -->
+            <div class="relative -top-5">
+                <div class="w-14 h-14 bg-gradient-to-b from-cyan-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/40 border-2 border-slate-950 cursor-pointer font-orbitron font-bold text-lg text-white">
+                    A
+                </div>
+            </div>
+
+            <button class="flex flex-col items-center text-slate-500 hover:text-slate-300">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+                <span class="text-[9px] uppercase tracking-wider mt-1">Biblioteca</span>
+            </button>
+            <button class="flex flex-col items-center text-slate-500 hover:text-slate-300">
+                <i data-lucide="rocket" class="w-5 h-5"></i>
+                <span class="text-[9px] uppercase tracking-wider mt-1">Missões</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- Inicializador dos Ícones do Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
